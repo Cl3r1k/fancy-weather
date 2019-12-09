@@ -1,0 +1,47 @@
+
+/* Common styles */
+.body {
+    height: 100vh;
+}
+
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    max-width: $desktop;
+    @media screen and (max-width: $mobile) {
+        // styles for mobile
+        width: 100%;
+        margin: 0;
+        min-width: $mobile;
+    }
+}
+
+.active {
+    background-color: $active-bg-color;
+}
+
+// TODO: Consider to move styles for components to /components folder
+/**** COMPONENTS *****/
+.button-styled {
+    cursor: pointer;
+    height: 30px;
+    margin: 0 5px;
+    border: none;
+    background: #0bc0d8;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 0 10px;
+}
+
+.input-styled {
+    height: 30px;
+    margin: 0 5px;
+    padding: 0px 10px;
+    border: none;
+    background: #f3f3f3;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+}
+/**** END COMPONENTS *****/
+
