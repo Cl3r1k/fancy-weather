@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./dist/style.css">
     <script type="text/javascript" src="./dist/bundle.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.0/mapbox-gl.css" rel="stylesheet" />
     <title>Fancy-weather</title>
 </head>
 
@@ -79,7 +81,8 @@
 
         <div class="map-container">
             <div class="map-wrapper">
-                <img class="map-image" src="./assets/images/google_map_placeholder.png" alt="google_map_placeholder">
+                <!-- <img class="map-image" src="./assets/images/google_map_placeholder.png" alt="google_map_placeholder"> -->
+                <div class="map" id="map"></div>
             </div>
             <div class="coordinates-block">
                 <p>Latitude: 53°54' Longitude: 27°34'</p>
