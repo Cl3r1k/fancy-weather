@@ -10,6 +10,88 @@
     <title>Fancy-weather</title>
 </head>
 
-<body id="idBody" class="body"></body>
+<body id="idBody" class="body">
+
+
+    <header class="header-container wrapper">
+        <div class="controls-container">
+            <button>Switch image</button>
+            <button>Switch Language</button>
+            <button>Switch °C/°F</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search city or ZIP">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <main class="main-container wrapper">
+        <div class="weather-container">
+            <div class="weather-today">
+                <section class="weather-card weather-card-detailed">
+                    <p class="weather-card-city">Moscow, Russia</p>
+                    <p class="weather-card-day format-long">Mon 09 December 16:41 (GMT+3)</p>
+                    <div class="weather-card-details-block">
+                        <h3 class="weather-card-temperature">10°</h3>
+                        <div class="weather-card-extended-info-block">
+                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                                alt="weather icon">
+                            <p class="weather-card-extra-info">Feels like: 7° Wind: 2 m/s Humidity: 83%</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="weather-future">
+                <section class="weather-card">
+                    <p class="weather-card-day">Tuesday</p>
+                    <div class="weather-card-details-block">
+                        <h3 class="weather-card-temperature">7°</h3>
+                        <div class="weather-card-extended-info-block">
+                            <img class="weather-card-icon" src="./assets/images/Weather_cloudily_image.png"
+                                alt="weather icon">
+                        </div>
+                    </div>
+                </section>
+                <section class="weather-card">
+                    <p class="weather-card-day">Wednesday</p>
+                    <div class="weather-card-details-block">
+                        <h3 class="weather-card-temperature">19°</h3>
+                        <div class="weather-card-extended-info-block">
+                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                                alt="weather icon">
+                        </div>
+                    </div>
+                </section>
+                <section class="weather-card">
+                    <p class="weather-card-day">Thursday</p>
+                    <div class="weather-card-details-block">
+                        <h3 class="weather-card-temperature">3°</h3>
+                        <div class="weather-card-extended-info-block">
+                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                                alt="weather icon">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div class="map-wrapper">
+                <img class="map-image" src="./assets/images/google_map_placeholder.png" alt="google_map_placeholder">
+            </div>
+            <div class="coordinates-block">
+                <p>Latitude: 53°54' Longitude: 27°34'</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-container wrapper">
+        <!-- Sticky footer with copyrights -->
+        <p>Made with coffee by Cl3r1k</p>
+    </footer>
+
+</body>
 
 </html>
