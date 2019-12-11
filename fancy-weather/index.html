@@ -32,14 +32,14 @@
         <div class="weather-container">
             <div class="weather-today">
                 <section class="weather-card weather-card-detailed">
-                    <p class="weather-card-city">Moscow, Russia</p>
-                    <p class="weather-card-day format-long">Mon 09 December 16:41 (GMT+3)</p>
+                    <p id="idCityName" class="weather-card-city">Moscow, Russia</p>
+                    <p id="idCurrentDateTime" class="weather-card-day format-normal">Mon 09 December 16:41 (GMT+3)</p>
                     <div class="weather-card-details-block">
                         <h3 class="weather-card-temperature">10°</h3>
                         <div class="weather-card-extended-info-block">
-                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                            <img class="weather-card-icon big-icon" src="./assets/images/weather_icons/cloudy.png"
                                 alt="weather icon">
-                            <p class="weather-card-extra-info">Feels like: 7° Wind: 2 m/s Humidity: 83%</p>
+                            <p class="weather-card-extra-info">Feels like: 7° <br>Wind: 2 m/s <br>Humidity: 83%</p>
                         </div>
                     </div>
                 </section>
@@ -51,7 +51,7 @@
                     <div class="weather-card-details-block">
                         <h3 class="weather-card-temperature">7°</h3>
                         <div class="weather-card-extended-info-block">
-                            <img class="weather-card-icon" src="./assets/images/Weather_cloudily_image.png"
+                            <img class="weather-card-icon" src="./assets/images/weather_icons/cloudy.png"
                                 alt="weather icon">
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="weather-card-details-block">
                         <h3 class="weather-card-temperature">19°</h3>
                         <div class="weather-card-extended-info-block">
-                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                            <img class="weather-card-icon" src="./assets/images/weather_icons/cloudy.png"
                                 alt="weather icon">
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                     <div class="weather-card-details-block">
                         <h3 class="weather-card-temperature">3°</h3>
                         <div class="weather-card-extended-info-block">
-                            <img class="weather-card-icon" src="./assets/images/Weather_clouds_image.png"
+                            <img class="weather-card-icon" src="./assets/images/weather_icons/cloudy.png"
                                 alt="weather icon">
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="map" id="map"></div>
             </div>
             <div class="coordinates-block">
-                <p>Latitude: 53°54' Longitude: 27°34'</p>
+                <p id="idCoordinates">Latitude: 53°54' Longitude: 27°34'</p>
             </div>
         </div>
     </main>

@@ -51,6 +51,9 @@
     font-style: normal;
     text-transform: uppercase;
     .weather-card-day {
+        &.format-normal {
+            text-transform: initial;
+        }
     }
     .weather-card-details-block {
         display: grid;
@@ -62,6 +65,10 @@
             margin: 0;
         }
         .weather-card-icon {
+            width: 70px;
+            &.big-icon {
+                width: 170px;
+            }
         }
     }
 }
@@ -106,11 +113,14 @@
         height: 100%;
         .map-wrapper {
             width: 100%;
-            height: 100%;
+            height: 90%;
             .map {
                 width: 100%;
                 height: 100%;
             }
+        }
+        .coordinates-block {
+            text-align: right;
         }
     }
 }
