@@ -16,6 +16,9 @@ const initApp = async () => {
   map.setMapPosition(settings.latitude, settings.longitude);
 
   domHelper.setDOMHandlers();
+
+  domHelper.updateTime();
+  setInterval(domHelper.updateTime, 6000);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
