@@ -102,8 +102,8 @@
     background-color: lightblue;
     background-size: cover;
     display: block;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
+    // filter: blur(5px);
+    // -webkit-filter: blur(5px);
     height: 100vh;
     left: 0;
     position: fixed;
@@ -117,10 +117,44 @@
     grid-template-columns: 50% 50%;
     padding: 40px 20px;
     .controls-container {
-        //
+        .switch-image-control {
+            background: url("../../assets/images/Refresh_BG_icon.png") no-repeat;
+            width: 45px;
+            height: 45px;
+            border: none;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .switch-language-control {
+            //
+        }
+        .switch-temperature-control {
+            //
+        }
     }
     .search-container {
         justify-self: center;
+        position: relative;
+        .search-input {
+            width: 280px;
+            height: 44px;
+            background: rgba(76, 82, 85, 0.4);
+            border: 1px solid rgba(228, 227, 227, 0.2);
+            box-sizing: border-box;
+            padding: 13px 15px;
+            border-radius: 5px;
+            color: #ffffff;
+            &::placeholder {
+                color: #ffffff;
+                font-size: 14px;
+                line-height: 17px;
+            }
+        }
+        .search-control {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
     }
 }
 

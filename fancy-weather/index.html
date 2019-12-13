@@ -18,14 +18,18 @@
 
     <header class="header-container wrapper">
         <div class="controls-container">
-            <button id="idSwitchImageButton">Switch image</button>
-            <button id="idSwitchLanguageButton">Switch Language</button>
-            <button id="idSwitchTemperatureButton">Switch °C/°F</button>
+            <button id="idSwitchImageButton" class="switch-image-control"></button>
+            <select name="switch-language" id="idSwitchLanguageControl" class="switch-language-control">
+                <option value="1">EN</option>
+                <option value="2">RU</option>
+                <option value="3">BE</option>
+            </select>
+            <button id="idSwitchTemperatureButton" class="switch-temperature-control">Switch °C/°F</button>
         </div>
 
         <div class="search-container">
-            <input type="text" placeholder="Search city or ZIP">
-            <button>Search</button>
+            <input id="idSearchField" type="text" class="search-input" placeholder="Search city or ZIP">
+            <button id="idSearchButton" class="search-control">Search</button>
         </div>
     </header>
 
