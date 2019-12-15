@@ -8,6 +8,10 @@
 @import "./base/fonts";
 
 // 4. Components
+@import "./components/button";
+@import "./components/input";
+@import "./components/weather-card";
+@import "./components/checkbox";
 
 // 5. Layouts (Layout-related sections)
 @import "./layout/index";

@@ -29,10 +29,18 @@ const getSeason = dateTime => {
 const getDayPeriod = (dateTime, offsetSec) => {
   const secondsInHour = 3600;
   const timeValue = new Date(dateTime).getUTCHours() + offsetSec / secondsInHour;
-  return timeValue >= 7 && timeValue <= 19 ? 'day' : 'night';
+  return timeValue > 6 && timeValue < 20 ? 'day' : 'night';
+};
+
+const convertCoordinatesToTime = coordinates => {
+  const minutes = 60;
+  return `${coordinates - (coordinates - parseInt(coordinates))}°${parseInt(
+    (coordinates - parseInt(coordinates)) * minutes,
+  )}′`;
 };
 
 export default {
   getSeason,
   getDayPeriod,
+  convertCoordinatesToTime,
 };

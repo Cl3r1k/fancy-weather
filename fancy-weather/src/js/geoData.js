@@ -29,8 +29,21 @@ const searchByValueData = async (searchValue, language) => {
   return geoPositionDataOpenCageData;
 };
 
+const getCurrentPosition = () => {
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject, options);
+  });
+};
+
 export default {
   getGeoPosition,
   getGeoPositionData,
   searchByValueData,
+  getCurrentPosition,
 };

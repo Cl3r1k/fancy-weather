@@ -1,18 +1,15 @@
 import './scss/main.scss';
 
 import domHelper from './js/domHelper';
-// import layoutGenerator from './js/layoutGenerator';
+import layoutGenerator from './js/layoutGenerator';
 
 const initApp = async () => {
-  // layoutGenerator.renderLayout();
+  layoutGenerator.renderLayout();
 
   domHelper.loadSettings();
 
   await domHelper.generateAppDataByIP();
 
-  // TODO: Add JSdoc to methods
-
-  // Get Image Data
   await domHelper.changeBackgroundImage();
 
   domHelper.setDOMHandlers();

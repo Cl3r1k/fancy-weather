@@ -1,0 +1,91 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the 'weather-card' component.
+// -----------------------------------------------------------------------------
+
+.weather-card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    // font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+    .weather-card-city {        
+        font-size: 2.63vw;
+        line-height: 3.2vw;
+        margin: 0;
+        @media screen and (max-width: $preTablet1020) {
+            font-size: 3vw;
+            line-height: 3.5vw;
+        }
+        @media screen and (max-width: $mobile) {
+            font-size: 11px;
+            line-height: 12px;
+        }
+    }
+    .weather-card-day {
+        font-size: 1.1vw;
+        line-height: 1.3vw;
+        @media screen and (max-width: $preTablet1020) {
+            font-size: 2vw;
+            line-height: 2.5vw;
+        }
+        @media screen and (max-width: $mobile) {
+            font-size: 9px;
+            line-height: 10px;
+        }
+        &.format-normal {
+            text-transform: initial;
+            font-size: 1.25vw;
+            line-height: 1.5vw;
+            @media screen and (max-width: $preTablet1020) {
+                font-size: 2.1vw;
+                line-height: 2.6vw;
+            }
+            @media screen and (max-width: $mobile) {
+                font-size: 10px;
+                line-height: 11px;
+            }
+        }
+    }
+    .weather-card-details-block {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        .weather-card-temperature {
+            font-weight: 600;
+            font-size: 4.3vw;
+            line-height: 5vw;
+            margin: 0;
+            &.big-card-text {
+                font-size: 15.5vw;
+                line-height: 19vw;
+            }
+        }
+        .weather-card-icon {
+            width: 3.8vw;
+            @media screen and (max-width: $mobile) {
+                width: 40px;
+            }
+            &.big-card-icon {
+                width: 170px;
+                @media screen and (max-width: $preTablet1020) {
+                    width: 11vw;
+                }
+                @media screen and (max-width: $mobile) {
+                    width: 80px;
+                }
+            }
+        }
+        .weather-card-extra-info {
+            font-size: 1.15vw;
+            line-height: 2vw;
+            @media screen and (max-width: $preTablet1020) {
+                font-size: 2vw;
+                line-height: 2.5vw;
+            }
+            @media screen and (max-width: $mobile) {
+                font-size: 8px;
+                line-height: 10px;
+            }
+        }
+    }
+}

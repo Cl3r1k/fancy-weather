@@ -2,6 +2,8 @@
 /* Common styles */
 .body {
     height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 .wrapper {
@@ -9,6 +11,7 @@
     margin: 0 auto;
     max-width: $desktop;
     padding: 0 20px;
+    box-sizing: border-box;
     @media screen and (max-width: $mobile) {
         // styles for mobile
         width: 100%;
@@ -18,143 +21,7 @@
 }
 
 .active {
-    background-color: $active-bg-color;
-}
-
-// TODO: Consider to move styles for components to /components folder
-/**** COMPONENTS *****/
-.button-styled {
-    cursor: pointer;
-    height: 30px;
-    margin: 0 5px;
-    border: none;
-    background: #0bc0d8;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 2px;
-    color: #ffffff;
-    padding: 0 10px;
-}
-
-.input-styled {
-    height: 30px;
-    margin: 0 5px;
-    padding: 0px 10px;
-    border: none;
-    background: #f3f3f3;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.24), 0px 0px 2px rgba(0, 0, 0, 0.12);
-    border-radius: 2px;
-}
-
-.weather-card {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    // font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    text-transform: uppercase;
-    .weather-card-city {        
-        font-size: 2.63vw;
-        line-height: 3.2vw;
-        margin: 0;
-    }
-    .weather-card-day {
-        font-size: 1.1vw;
-        line-height: 1.3vw;
-        &.format-normal {
-            text-transform: initial;
-            font-size: 1.25vw;
-            line-height: 1.5vw;
-        }
-    }
-    .weather-card-details-block {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        .weather-card-temperature {
-            font-weight: 600;
-            font-size: 4.3vw;
-            line-height: 5vw;
-            margin: 0;
-            &.big-card-text {
-                font-size: 15.5vw;
-                line-height: 19vw;
-            }
-        }
-        .weather-card-icon {
-            width: 70px;
-            &.big-card-icon {
-                width: 170px;
-            }
-        }
-        .weather-card-extra-info {
-            font-size: 1.15vw;
-            line-height: 2vw;
-        }
-    }
-}
-
-.checkbox-styled {
-    position: relative;
-    display: inline-block;
-    width: 90px;
-    height: 45px;
-    background: rgba(76, 82, 85, 0.4);
-    border: 1px solid #cccccc;
-    vertical-align: middle;
-    border-radius: 5px;
-    & > input[type=checkbox] {
-        visibility: hidden;
-    }
-    &:before {
-        position: absolute;
-        display: inline;
-        left: 10px;
-        content: '°F';
-        color: #fff;
-        font: 24px/45px Arial, sans-serif;
-        font-weight: bold;
-        text-transform: capitalize;
-        z-index: 0;
-    }
-    &:after {
-        position: absolute;
-        display: inline;
-        right: 10px;
-        content: '°С';
-        color: #fff;
-        font: 24px/45px Arial, sans-serif;
-        font-weight: bold;
-        text-transform: capitalize;
-        z-index: 0;
-    }
-    & label {
-        position: absolute;
-        display: block;
-        top: 3px;
-        left: 3px;
-        width: 36px;
-        height: 40px;
-        background: #ffffff87;
-        cursor: pointer;
-        transition: all 0.5s linear;
-        -webkit-transition: all 0.5s linear;
-        -moz-transition: all 0.5s linear;
-        border-radius: 2px;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        z-index: 1;
-    }
-        
-    & input[type=checkbox]:checked + label {
-        left: 50px;
-    }
-}
-  
-  
-/**** END COMPONENTS *****/
-
-.body {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    background-color: $activeBgColor;
 }
 
 .background-image {
@@ -183,16 +50,41 @@
             border: none;
             cursor: pointer;
             vertical-align: middle;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            transition: $transitionState;
+            box-shadow: $boxShadowState;
+            &:hover {
+                transform: scale(1.1);
+                background-color: $backgroundColorStateHover;
+                box-shadow: $boxShadowStateHover;
+            }
         }
         .switch-language-control {
-            //
+            height: 45px;
+            margin: auto 10px;
+            border-radius: 5px;
+            color: #ffffff;
+            background: rgba(174, 181, 185, 0.5);
+            font-weight: 600;
+            width: 55px;
+            padding-left: 5px;
+            border: 1px solid #cccccc;
+            transition: $transitionState;
+            box-shadow: $boxShadowState;
+            &:hover {
+                transform: scale(1.1);
+                background-color: $backgroundColorStateHover;
+                box-shadow: $boxShadowStateHover;
+            }
         }
     }
     .search-container {
         justify-self: center;
         position: relative;
         .search-input {
-            width: 300px;
+            width: 23.63vw;
+            min-width: 200px;
             height: 44px;
             background: rgba(76, 82, 85, 0.4);
             border: 1px solid rgba(228, 227, 227, 0.74);
@@ -200,6 +92,12 @@
             padding: 13px 140px 15px 13px;
             border-radius: 5px;
             color: #ffffff;
+            transition: $transitionState;
+            box-shadow: $boxShadowState;
+            &:hover {
+                background-color: $backgroundColorStateHover;
+                box-shadow: $boxShadowStateHover;
+            }
             &::placeholder {
                 color: #ffffff;
                 font-size: 14px;
@@ -208,13 +106,20 @@
         }
         .search-controls {
             position: absolute;
-            right: 0;
+            right: 1px;
             top: 1px;
             .search-control-voice {
-                width: 20px;
+                background: url("../../assets/images/Voice_icon.png") no-repeat;
+                width: 25px;
+                height: 25px;
+                border: none;
                 vertical-align: middle;
                 margin-right: 5px;
                 cursor: pointer;
+                transition: $transitionState;
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
             .search-control-button {                
                 width: 100px;
@@ -227,6 +132,13 @@
                 font-weight: bold;
                 text-transform: uppercase;
                 cursor: pointer;
+                transition: $transitionState;
+                box-shadow: $boxShadowState;
+                &:hover {
+                    transform: scale(1.05);
+                    background-color: $backgroundColorStateHover;
+                    box-shadow: $boxShadowStateHover;
+                }
             }
         }        
     }
@@ -237,11 +149,12 @@
     grid-template-columns: 50% 50%;
     align-items: center;
     padding: 30px 30px 10px 30px;
-    border: 1px solid;
+    // border: 1px solid;
     box-sizing: border-box;
     border-radius: 10px;
     background-color: #92929275;
     color: #ffffff;
+    box-shadow: inset 0px 0px 10px 5px #bfbfbf, 0px 0px 10px 5px #e4e4e4;
     @media screen and (max-width: $tablet) {
         width: 100%;
         margin: 0;

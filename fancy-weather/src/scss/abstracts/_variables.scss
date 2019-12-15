@@ -3,8 +3,12 @@ $mobile: 320px;
 $tablet: 768px;
 $preTablet1020: 1020px;
 $desktop: 1440px;
-$active-bg-color: #bd6aa4;
-$hover-bg-color: #cec8c8;
+$activeBgColor: #bd6aa4;
+$hoverBgColor: #cec8c8;
+$transitionState: all 0.1s ease-in;
+$boxShadowState: 0px 0px 5px 0px #a9a9a9;
+$boxShadowStateHover: 0px 0px 6px 0px #6b6b6b;
+$backgroundColorStateHover: #a0a0a0;
 
 // Debug color
 $debugColor: #6e8cb9;
