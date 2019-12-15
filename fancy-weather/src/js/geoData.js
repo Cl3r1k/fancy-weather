@@ -29,7 +29,7 @@ const searchByValueData = async (searchValue, language) => {
   return geoPositionDataOpenCageData;
 };
 
-module.exports = {
+export default {
   getGeoPosition,
   getGeoPositionData,
   searchByValueData,

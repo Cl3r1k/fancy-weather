@@ -1,6 +1,6 @@
 import './scss/main.scss';
 
-const domHelper = require('./js/domHelper');
+import domHelper from './js/domHelper';
 
 const initApp = async () => {
   await domHelper.generateAppDataByIP();

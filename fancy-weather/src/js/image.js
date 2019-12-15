@@ -11,6 +11,6 @@ const getImageUrl = async (season = 'winter', dayPeriod = 'day', weather = 'clea
   return imageData;
 };
 
-module.exports = {
+export default {
   getImageUrl,
 };

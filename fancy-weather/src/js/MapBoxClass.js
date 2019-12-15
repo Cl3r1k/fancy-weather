@@ -1,7 +1,7 @@
 const mapboxgl = require('mapbox-gl');
 const config = require('./config');
 
-class MapBoxClass {
+export default class MapBoxClass {
   setMapPosition(latitude, longitude) {
     mapboxgl.accessToken = config.mapBoxAccessToken;
     this.mapBox = new mapboxgl.Map({
@@ -19,5 +19,3 @@ class MapBoxClass {
     });
   }
 }
-
-module.exports = MapBoxClass;

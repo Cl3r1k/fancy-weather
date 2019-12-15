@@ -1,10 +1,10 @@
-const settings = require('./settings');
-const interfaceConfig = require('./interfaceConfig');
-const image = require('./image');
-const weather = require('./weather');
-const geoData = require('./geoData');
-const helper = require('./helper');
-const MapBoxClass = require('./MapBoxClass');
+import settings from './settings';
+import interfaceConfig from './interfaceConfig';
+import image from './image';
+import weather from './weather';
+import geoData from './geoData';
+import helper from './helper';
+import MapBoxClass from './MapBoxClass';
 
 const mapBoxClassInstance = new MapBoxClass();
 
@@ -240,7 +240,7 @@ const setDOMHandlers = () => {
   document.getElementById('idVoiceSearchIcon').addEventListener('click', voiceSearchHandler);
 };
 
-module.exports = {
+export default {
   updateAppView,
   setDOMHandlers,
   changeBackgroundImage,

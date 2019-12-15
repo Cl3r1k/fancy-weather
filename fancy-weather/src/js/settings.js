@@ -11,4 +11,4 @@ const settings = {
   timeZone: 'Europe/Moscow',
 };
 
-module.exports = settings;
+export default settings;

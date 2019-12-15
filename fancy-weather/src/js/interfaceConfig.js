@@ -95,4 +95,4 @@ const interfaceConfig = {
   },
 };
 
-module.exports = interfaceConfig;
+export default interfaceConfig;

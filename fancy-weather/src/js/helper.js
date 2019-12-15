@@ -32,7 +32,7 @@ const getDayPeriod = (dateTime, offsetSec) => {
   return timeValue >= 7 && timeValue <= 19 ? 'day' : 'night';
 };
 
-module.exports = {
+export default {
   getSeason,
   getDayPeriod,
 };

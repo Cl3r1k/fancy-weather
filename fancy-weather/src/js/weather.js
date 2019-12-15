@@ -10,6 +10,6 @@ const getWeatherDataByPosition = async (latitude, longitude, language = 'en') =>
   return weatherData;
 };
 
-module.exports = {
+export default {
   getWeatherDataByPosition,
 };
