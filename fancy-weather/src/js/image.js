@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./settings/config');
 
 const getImageUrl = async (season = 'winter', dayPeriod = 'day', weather = 'clear') => {
   const tags = `nature+${season}+${dayPeriod}+${weather}`;

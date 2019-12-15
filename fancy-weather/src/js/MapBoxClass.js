@@ -1,5 +1,5 @@
 const mapboxgl = require('mapbox-gl');
-const config = require('./config');
+const config = require('./settings/config');
 
 export default class MapBoxClass {
   setMapPosition(latitude, longitude) {

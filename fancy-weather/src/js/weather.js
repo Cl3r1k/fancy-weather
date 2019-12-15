@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('./settings/config');
 
 const getWeatherDataByPosition = async (latitude, longitude, language = 'en') => {
   const queryParams = `${config.darkSkySecretKey}/${latitude},${longitude}?lang=${language}`;

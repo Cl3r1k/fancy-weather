@@ -1,12 +1,16 @@
 import './scss/main.scss';
 
 import domHelper from './js/domHelper';
+// import layoutGenerator from './js/layoutGenerator';
 
 const initApp = async () => {
+  // layoutGenerator.renderLayout();
+
+  domHelper.loadSettings();
+
   await domHelper.generateAppDataByIP();
 
   // TODO: Add JSdoc to methods
-  // TODO: Move interface config to separate file
 
   // Get Image Data
   await domHelper.changeBackgroundImage();
