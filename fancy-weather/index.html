@@ -24,12 +24,19 @@
                 <option value="2">RU</option>
                 <option value="3">BE</option>
             </select>
-            <button id="idSwitchTemperatureButton" class="switch-temperature-control">Switch °C/°F</button>
+            <!-- <button id="idSwitchTemperatureButton" class="switch-temperature-control">Switch °C/°F</button> -->
+            <div class="checkbox-styled">
+                <input class="switch-temperature-control" id="idSwitchTemperatureButton" type="checkbox" value="1" checked />
+                <label for="idSwitchTemperatureButton"></label>
+              </div>
         </div>
 
         <div class="search-container">
             <input id="idSearchField" type="text" class="search-input" placeholder="Search city or ZIP">
-            <button id="idSearchButton" class="search-control">Search</button>
+            <div class="search-controls">
+                <img id="idVoiceSearchIcon" class="search-control-voice" src="./assets/images/Voice_icon.png" alt="Voice_icon">
+                <button id="idSearchButton" class="search-control-button">Search</button>
+            </div>
         </div>
     </header>
 
@@ -87,7 +94,7 @@
         <div class="map-container">
             <div class="map-wrapper">
                 <!-- <img class="map-image" src="./assets/images/google_map_placeholder.png" alt="google_map_placeholder"> -->
-                <div class="map" id="map"></div>
+                <div class="map" id="idMap"></div>
             </div>
             <div class="coordinates-block">
                 <p id="idCoordinates" class="coordinates-text">Latitude: 53°54' Longitude: 27°34'</p>
@@ -97,7 +104,7 @@
 
     <footer class="footer-container wrapper">
         <!-- Sticky footer with copyrights -->
-        <p>Made with coffee by Cl3r1k</p>
+        <p class="credits">Made with coffee by Cl3r1k</p>
     </footer>
 
 </body>

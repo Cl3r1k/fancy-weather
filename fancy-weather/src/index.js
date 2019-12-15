@@ -1,11 +1,12 @@
 import './scss/main.scss';
 
-// TODO: Refactor all Magic Numbers
-
 const domHelper = require('./js/domHelper');
 
 const initApp = async () => {
   await domHelper.generateAppDataByIP();
+
+  // TODO: Add JSdoc to methods
+  // TODO: Move interface config to separate file
 
   // Get Image Data
   await domHelper.changeBackgroundImage();

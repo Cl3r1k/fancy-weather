@@ -1,9 +1,12 @@
 const settings = require('./settings');
+const interfaceConfig = require('./interfaceConfig');
 const image = require('./image');
 const weather = require('./weather');
 const geoData = require('./geoData');
-const map = require('./map');
 const helper = require('./helper');
+const MapBoxClass = require('./MapBoxClass');
+
+const mapBoxClassInstance = new MapBoxClass();
 
 const updateTime = () => {
   // Set time
@@ -11,9 +14,9 @@ const updateTime = () => {
   const dateTime = new Date();
 
   currentDateTimeElement.textContent = `${
-    settings.interface.weekDayShort[settings.language][dateTime.getDay()]
+    interfaceConfig.weekDayShort[settings.language][dateTime.getDay()]
   }, ${dateTime.getDate()} ${
-    settings.interface.month[settings.language][dateTime.getMonth()]
+    interfaceConfig.month[settings.language][dateTime.getMonth()]
   } ${dateTime.getFullYear()} ${dateTime.toLocaleTimeString(settings.language, {
     hour: 'numeric',
     minute: 'numeric',
@@ -26,6 +29,7 @@ const updateAppView = () => {
   const humidityPercent = 100;
   const fahrenheitSubtrahend = 32;
   const fahrenheitCoefficient = 1.8;
+  const millisecondsValue = 1000;
 
   // Set City Data
   const cityNameElement = document.getElementById('idCityName');
@@ -34,8 +38,8 @@ const updateAppView = () => {
   // Set geo position
   const coordinatesElement = document.getElementById('idCoordinates');
   const [lat, long] = [settings.latitude, settings.longitude].map(coordinate => `${coordinate}'`.replace('.', `°`));
-  coordinatesElement.innerHTML = `${settings.interface.latitude[settings.language]}: ${lat} <br> ${
-    settings.interface.longitude[settings.language]
+  coordinatesElement.innerHTML = `${interfaceConfig.latitude[settings.language]}: ${lat} <br> ${
+    interfaceConfig.longitude[settings.language]
   }: ${long}`;
 
   // Set weather data
@@ -57,10 +61,10 @@ const updateAppView = () => {
   // console.log('weatherCardDetailedElement', weatherCardDetailedElement);
   weatherCardDetailedElement.querySelector('.weather-card-temperature').textContent = `${currentTemperature}°`;
   weatherCardDetailedElement.querySelector('.weather-card-extra-info').innerHTML = `${
-    settings.interface.feelsLike[settings.language]
-  }: ${feelsLike}° <br>${settings.interface.wind[settings.language]}: ${windSpeed} ${
-    settings.interface.windSpeed[settings.language]
-  } <br>${settings.interface.humidity[settings.language]}: ${humidity * humidityPercent}%`;
+    interfaceConfig.feelsLike[settings.language]
+  }: ${feelsLike}° <br>${interfaceConfig.wind[settings.language]}: ${windSpeed} ${
+    interfaceConfig.windSpeed[settings.language]
+  } <br>${interfaceConfig.humidity[settings.language]}: ${humidity * humidityPercent}%`;
   weatherCardDetailedElement
     .querySelector('.weather-card-icon')
     .setAttribute('src', `./assets/images/weather_icons/${icon}.png`);
@@ -70,7 +74,7 @@ const updateAppView = () => {
   // console.log('weatherCardsElements', weatherCardsElements);
   weatherCardsElements.forEach((weatherCard, index) => {
     // console.log('weatherData.daily.data[index]', weatherData.daily.data[index + 1]);
-    const weekDayIndex = new Date(settings.weatherData.daily.data[index + 1].time * 1000).getDay();
+    const weekDayIndex = new Date(settings.weatherData.daily.data[index + 1].time * millisecondsValue).getDay();
     // console.log('weekDay', weekDay);
     const averageTemperature =
       (settings.weatherData.daily.data[index + 1].temperatureLow +
@@ -80,7 +84,7 @@ const updateAppView = () => {
       ? parseInt((averageTemperature - fahrenheitSubtrahend) / fahrenheitCoefficient)
       : parseInt(averageTemperature);
     weatherCard.querySelector('.weather-card-day').textContent =
-      settings.interface.weekDay[settings.language][weekDayIndex];
+      interfaceConfig.weekDay[settings.language][weekDayIndex];
     weatherCard.querySelector('.weather-card-temperature').textContent = `${temperature}°`;
     weatherCard
       .querySelector('.weather-card-icon')
@@ -89,8 +93,8 @@ const updateAppView = () => {
 
   document
     .getElementById('idSearchField')
-    .setAttribute('placeholder', settings.interface.searchPlaceholder[settings.language]);
-  document.getElementById('idSearchButton').textContent = settings.interface.search[settings.language];
+    .setAttribute('placeholder', interfaceConfig.searchPlaceholder[settings.language]);
+  document.getElementById('idSearchButton').textContent = interfaceConfig.search[settings.language];
 
   updateTime();
 };
@@ -100,16 +104,18 @@ const saveSettings = () => {
   localStorage.setItem('weatherAppSettings', JSON.stringify(settings));
 };
 
-const generateAppData = async () => {
+const generateAppData = async (isInitialState = false) => {
   // console.log('generateAppData() --- settings.geoPositionData', settings.geoPositionData);
   settings.latitude = settings.geoPositionData.results[0].geometry.lat;
   settings.longitude = settings.geoPositionData.results[0].geometry.lng;
   // console.log('settings.latitude', settings.latitude, 'settings.longitude', settings.longitude);
 
   settings.cityName =
-    settings.geoPositionData.results[0].components.city !== undefined
-      ? settings.geoPositionData.results[0].components.city
-      : settings.geoPositionData.results[0].components.state;
+    settings.geoPositionData.results[0].components.city ||
+    settings.geoPositionData.results[0].components.town ||
+    settings.geoPositionData.results[0].components.village ||
+    settings.geoPositionData.results[0].components.county ||
+    settings.geoPositionData.results[0].components.state;
   settings.countryName = settings.geoPositionData.results[0].components.country;
   settings.timeZone = settings.geoPositionData.results[0].annotations.timezone.name;
   // console.log('cityName', settings.cityName, 'countryName', settings.countryName);
@@ -122,7 +128,11 @@ const generateAppData = async () => {
   // console.log('generateAppData() settings.weatherData', settings.weatherData);
 
   // Set Map Data
-  map.setMapPosition(settings.latitude, settings.longitude);
+  if (isInitialState) {
+    mapBoxClassInstance.setMapPosition(settings.latitude, settings.longitude);
+  } else {
+    mapBoxClassInstance.flyToPosition(settings.latitude, settings.longitude);
+  }
 
   updateAppView();
 
@@ -152,13 +162,16 @@ const generateAppDataByIP = async () => {
   settings.geoPositionData = await geoData.getGeoPositionData(latitude, longitude, settings.language.substr(0, 2));
   // console.log('settings.geoPositionData', settings.geoPositionData);
 
-  await generateAppData();
+  await generateAppData(true);
 };
 
 const generateAppDataBySearch = async searchValue => {
-  settings.geoPositionData = await geoData.searchByValueData(searchValue, settings.language.substr(0, 2));
-  // console.log('generateAppDataBySearch() settings.geoPositionData', settings.geoPositionData);
-  await generateAppData();
+  const searchResult = await geoData.searchByValueData(searchValue, settings.language.substr(0, 2));
+  if (searchResult.results.length) {
+    settings.geoPositionData = searchResult;
+    // console.log('generateAppDataBySearch() settings.geoPositionData', settings.geoPositionData);
+    await generateAppData();
+  }
 };
 
 // ------------ Not related to DOM changes --------------------
@@ -170,6 +183,7 @@ const changeBackgroundImage = async () => {
     settings.geoPositionData.results[0].annotations.timezone.offset_sec,
   );
   const imageData = await image.getImageUrl(seasonPeriod, dayPeriod, settings.weatherData.currently.summary);
+  // console.log('changeBackgroundImage() dayPeriod', dayPeriod);
   // localStorage.setItem('imageData', JSON.stringify(imageData));
   // TODO: Do not forget to remove localStorage part
   // const imageData = JSON.parse(localStorage.getItem('imageData'));
@@ -203,10 +217,14 @@ const changeTemperatureScale = async () => {
 const searchHandler = async () => {
   const searchValue = document.getElementById('idSearchField').value;
   // console.log('searchValue', searchValue);
-  // TODO: Check search with random value for example - 'asf3asfsad', or with countyName - Canada
   if (searchValue) {
-    generateAppDataBySearch(searchValue);
+    await generateAppDataBySearch(searchValue);
+    await changeBackgroundImage();
   }
+};
+
+const voiceSearchHandler = async () => {
+  mapBoxClassInstance.flyToPosition(55.75, 37.61);
 };
 
 const setDOMHandlers = () => {
@@ -214,6 +232,12 @@ const setDOMHandlers = () => {
   document.getElementById('idSwitchLanguageControl').addEventListener('change', changeLanguage);
   document.getElementById('idSwitchTemperatureButton').addEventListener('click', changeTemperatureScale);
   document.getElementById('idSearchButton').addEventListener('click', searchHandler);
+  document.getElementById('idSearchField').addEventListener('keypress', evt => {
+    if (evt.key === 'Enter') {
+      searchHandler();
+    }
+  });
+  document.getElementById('idVoiceSearchIcon').addEventListener('click', voiceSearchHandler);
 };
 
 module.exports = {
