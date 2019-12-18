@@ -195,8 +195,16 @@ const changeBackgroundImage = async () => {
   try {
     const imageData = await image.getImageUrl(seasonPeriod, dayPeriod, settings.weatherData.currently.icon);
     document.getElementById('idBGImage').style.background = `url("${imageData.urls.regular}") 0% 0% / cover no-repeat`;
+    localStorage.setItem('imageData', JSON.stringify(imageData));
   } catch (error) {
-    // In Chrome - 403 error always appears
+    // In Chrome - 403 error always appears, in this case load previous images
+    const data = localStorage.getItem('imageData');
+    if (data) {
+      const imageData = JSON.parse(data);
+      document.getElementById(
+        'idBGImage',
+      ).style.background = `url("${imageData.urls.regular}") 0% 0% / cover no-repeat`;
+    }
   }
 };
 
