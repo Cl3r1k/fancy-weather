@@ -34,8 +34,8 @@ const getDayPeriod = (dateTime, offsetSec) => {
 
 const convertCoordinatesToTime = coordinates => {
   const minutes = 60;
-  return `${coordinates - (coordinates - parseInt(coordinates))}°${parseInt(
-    (coordinates - parseInt(coordinates)) * minutes,
+  return `${coordinates - (coordinates - parseInt(coordinates))}°${Math.abs(
+    parseInt((coordinates - parseInt(coordinates)) * minutes),
   )}′`;
 };
 

@@ -49,15 +49,18 @@ const updateAppView = () => {
     ? parseInt((settings.weatherData.currently.apparentTemperature - fahrenheitSubtrahend) / fahrenheitCoefficient)
     : parseInt(settings.weatherData.currently.apparentTemperature);
   const { windSpeed, humidity, icon } = settings.weatherData.currently;
+  const weatherDescription = settings.weatherData.currently.summary;
 
   // Set weather data for Current day
   const weatherCardDetailedElement = document.querySelector('.weather-card-detailed');
   weatherCardDetailedElement.querySelector('.weather-card-temperature').textContent = `${currentTemperature}°`;
   weatherCardDetailedElement.querySelector('.weather-card-extra-info').innerHTML = `${
-    interfaceConfig.feelsLike[settings.language]
-  }: ${feelsLike}° <br>${interfaceConfig.wind[settings.language]}: ${windSpeed} ${
-    interfaceConfig.windSpeed[settings.language]
-  } <br>${interfaceConfig.humidity[settings.language]}: ${parseInt(humidity * humidityPercent)}%`;
+    interfaceConfig.weatherDescription[settings.language]
+  }: <small>${weatherDescription}</small> <br>${interfaceConfig.feelsLike[settings.language]}: ${feelsLike}° <br>${
+    interfaceConfig.wind[settings.language]
+  }: ${windSpeed} ${interfaceConfig.windSpeed[settings.language]} <br>${
+    interfaceConfig.humidity[settings.language]
+  }: ${parseInt(humidity * humidityPercent)}%`;
   weatherCardDetailedElement
     .querySelector('.weather-card-icon')
     .setAttribute('src', `./assets/images/weather_icons/${icon}.png`);
@@ -132,7 +135,11 @@ const generateAppData = async (isInitialState = false) => {
   settings.timeZone = settings.geoPositionData.results[0].annotations.timezone.name;
 
   // Get Weather Data
-  settings.weatherData = await weather.getWeatherDataByPosition(settings.latitude, settings.longitude);
+  settings.weatherData = await weather.getWeatherDataByPosition(
+    settings.latitude,
+    settings.longitude,
+    settings.language.substr(0, 2),
+  );
 
   // Set Map Data
   if (isInitialState) {
@@ -186,7 +193,7 @@ const changeBackgroundImage = async () => {
   );
 
   try {
-    const imageData = await image.getImageUrl(seasonPeriod, dayPeriod, settings.weatherData.currently.summary);
+    const imageData = await image.getImageUrl(seasonPeriod, dayPeriod, settings.weatherData.currently.icon);
     document.getElementById('idBGImage').style.background = `url("${imageData.urls.regular}") 0% 0% / cover no-repeat`;
   } catch (error) {
     // In Chrome - 403 error always appears

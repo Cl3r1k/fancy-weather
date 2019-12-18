@@ -1,5 +1,7 @@
 {
     "editor.formatOnSave": false,
-    "eslint.autoFixOnSave": true,
     "liveServer.settings.port": 5502,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
 }

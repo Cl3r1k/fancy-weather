@@ -149,7 +149,6 @@
     grid-template-columns: 50% 50%;
     align-items: center;
     padding: 30px 30px 10px 30px;
-    // border: 1px solid;
     box-sizing: border-box;
     border-radius: 10px;
     background-color: #92929275;
@@ -167,11 +166,6 @@
             display: grid;
             grid-template-columns: auto auto;
         }
-        // .weather-today {
-        //     .city-country-name {
-        //         text-transform: uppercase;
-        //     }
-        // }
         .weather-future {
             display: grid;
             grid-template-columns: 33% 34% 33%;
