@@ -29,7 +29,6 @@ const updateAppView = () => {
   const humidityPercent = 100;
   const fahrenheitSubtrahend = 32;
   const fahrenheitCoefficient = 1.8;
-  const millisecondsValue = 1000;
 
   // Set City Data
   const cityNameElement = document.getElementById('idCityName');
@@ -68,7 +67,9 @@ const updateAppView = () => {
   // Set weather data for Next days
   const weatherCardsElements = document.querySelectorAll('.weather-future .weather-card');
   weatherCardsElements.forEach((weatherCard, index) => {
-    const weekDayIndex = new Date(settings.weatherData.daily.data[index + 1].time * millisecondsValue).getDay();
+    const currentDay = new Date();
+    currentDay.setHours(0, 0, 0, 0);
+    const weekDayIndex = (currentDay.getDay() + index + 1) % 7;
     const averageTemperature =
       (settings.weatherData.daily.data[index + 1].temperatureLow +
         settings.weatherData.daily.data[index + 1].temperatureHigh) /
@@ -209,11 +210,13 @@ const changeBackgroundImage = async () => {
 };
 
 const generateAppDataBySearch = async searchValue => {
-  const searchResult = await geoData.searchByValueData(searchValue, settings.language.substr(0, 2));
-  if (searchResult.results.length) {
-    settings.geoPositionData = searchResult;
-    await generateAppData();
-    await changeBackgroundImage();
+  if (searchValue.length > 1) {
+    const searchResult = await geoData.searchByValueData(searchValue, settings.language.substr(0, 2));
+    if (searchResult.results.length) {
+      settings.geoPositionData = searchResult;
+      await generateAppData();
+      await changeBackgroundImage();
+    }
   }
 };
 
