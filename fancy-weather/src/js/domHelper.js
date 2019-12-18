@@ -250,10 +250,10 @@ const searchHandler = async () => {
 };
 
 const voiceSearchHandler = () => {
-  window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  // eslint-disable-next-line no-undef
-  const recognition = new SpeechRecognition(); // Experimental not known definition for eslint
+  const recognition = new (window.SpeechRecognition ||
+    window.webkitSpeechRecognition ||
+    window.mozSpeechRecognition ||
+    window.msSpeechRecognition)();
   recognition.interimResults = true;
   recognition.lang = settings.language;
 
